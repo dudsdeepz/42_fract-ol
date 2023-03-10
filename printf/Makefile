@@ -5,50 +5,36 @@
 #                                                     +:+ +:+         +:+      #
 #    By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/06 15:57:13 by eduarodr          #+#    #+#              #
-#    Updated: 2023/03/09 13:43:06 by eduarodr         ###   ########.fr        #
+#    Created: 2022/11/14 14:56:37 by eduarodr          #+#    #+#              #
+#    Updated: 2022/11/17 15:50:04 by eduarodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fract_ol
+SRC = ft_printf.c\
+		functions.c\
+		functions2.c\
 
-SRC = fract_ol.c\
-		src/controls.c\
-		src/win_managment.c\
+OBJ = $(SRC:.c=.o)
 
-OBJ = ${SRC:.c=.o}
-
+NAME = libftprintf.a
 
 CC = cc
 
 RM = rm -f
 
-CCFLAGS = -Werror -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra
 
-PRINTF_PATH = ./printf
-PRINTF_NAME = libftprintf.a
+all: $(NAME)
 
-MLX_NAME = libmlx.a
-MLX_PATH = ./mlx --no-print-directory
-MLX = ./mlx/libmlx.a
-
-$(PRINTF_NAME):
-		@make -C $(PRINTF_PATH) --no-print-directory
-
-all: ${MLX_NAME} ${NAME}
-
-${MLX_NAME}:
-	@make -C ${MLX_PATH}
-
-$(NAME):	$(OBJ)
-	$(CC) $(OBJ) -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz -o ${NAME} ${MLX} -L ./printf -lftprintf
+$(NAME): $(OBJ)
+			ar rcs $(NAME) $(OBJ)
 
 clean:
-	$(RM) $(OBJ)
+		$(RM) $(OBJ)
 
-fclean:	clean
-	$(RM) $(NAME)
+fclean: clean
+		$(RM) $(NAME)
 
-re:	fclean all
+re:	fclean $(NAME)
 
 .PHONY: all clean fclean re

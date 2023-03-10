@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controls.c                                         :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 13:26:38 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/03/10 10:13:01 by eduarodr         ###   ########.fr       */
+/*   Created: 2022/11/14 14:56:32 by eduarodr          #+#    #+#             */
+/*   Updated: 2022/11/18 10:26:37 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fract_ol.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	handle_no_event(void *data)
-{
-	return (0);
-}
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
 
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		fmtspec(char a, va_list arg);
+int		ft_putnbr(int c);
+int		ft_putnbr_uns(int c);
+int		ft_printf(const char *format, ...);
+int		ft_nbrhex(unsigned long int c, const char *b);
+int		ft_pt(unsigned long int c, const char *b, int flag);
+#endif

@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   controls.c                                         :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 13:26:38 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/03/10 10:13:01 by eduarodr         ###   ########.fr       */
+/*   Created: 2022/11/14 11:16:20 by eduarodr          #+#    #+#             */
+/*   Updated: 2022/11/23 17:14:21 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fract_ol.h"
+#include "ft_printf.h"
+#include <stdio.h>
 
-int	handle_no_event(void *data)
+int	ft_printf(const char *format, ...)
 {
-	return (0);
-}
+	size_t	i;
+	int		counter;
 
+	counter = 0;
+	va_list (arg);
+	va_start (arg, format);
+	i = 0;
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			counter += fmtspec(format[i], arg);
+			i++;
+		}
+		else
+			counter += ft_putchar(format[i++]);
+	}
+	va_end(arg);
+	return (counter);
+}

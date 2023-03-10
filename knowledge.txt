@@ -1,0 +1,2 @@
+mlx_hook(window, code(hooing event), mask(events), functionto happen, t_vars);
+mlx_loop(loop the given argument until something happens);

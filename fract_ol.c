@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:19:18 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/03/10 11:19:21 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:32:57 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	t_vars	vars;
 
-	if (ac >= 2)
+	if (ac > 1)
 	{
 		vars.mlx = mlx_init();
 		if (!vars.mlx)
@@ -27,10 +27,7 @@ int	main(int ac, char **av)
 			free (vars.win);
 			return (MLX_ERROR);
 		}
-		if (set_choose(av[1]) == 1)
-			printf("Julia\n");
-		else if (set_choose(av[1] == 2))
-			printf("Mandelbrot\n");
+		mandelbrot(vars);
 		close_it(vars);
 		mlx_loop(vars.mlx);
 		mlx_destroy_display(vars.mlx);

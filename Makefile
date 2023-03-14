@@ -6,7 +6,7 @@
 #    By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 15:57:13 by eduarodr          #+#    #+#              #
-#    Updated: 2023/03/09 13:43:06 by eduarodr         ###   ########.fr        #
+#    Updated: 2023/03/13 15:00:27 by eduarodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME = fract_ol
 SRC = fract_ol.c\
 		src/controls.c\
 		src/win_managment.c\
+		src/utils.c\
+		src/mandelbrot.c\
 
 OBJ = ${SRC:.c=.o}
 

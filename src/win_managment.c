@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:54:42 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/03/10 11:20:57 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:25:25 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ int arguments(void)
 		ft_printf("===================\n");
 		return (0);
 }
-int set_choose(char *av)
+void set_choose(char *av, t_vars vars)
 {
-	if (ft_strncmp(av[1], "Julia", 6) == 0)
-		return (1);
-	else if (ft_strncmp(av[1], "Mandelbrot", 10) == 0)
-		return (2);
+	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, av[1]);
+
 }

@@ -6,7 +6,7 @@
 #    By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 15:57:13 by eduarodr          #+#    #+#              #
-#    Updated: 2023/03/13 15:00:27 by eduarodr         ###   ########.fr        #
+#    Updated: 2023/03/17 10:27:41 by eduarodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,11 @@ PRINTF_PATH = ./printf
 PRINTF_NAME = libftprintf.a
 
 MLX_NAME = libmlx.a
-MLX_PATH = ./mlx --no-print-directory
+MLX_PATH = ./mlx
 MLX = ./mlx/libmlx.a
 
 $(PRINTF_NAME):
-		@make -C $(PRINTF_PATH) --no-print-directory
+		@make -C $(PRINTF_PATH)
 
 all: ${MLX_NAME} ${NAME}
 

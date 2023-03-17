@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/03/14 11:09:30 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:42:36 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@
 # define RED 0xFF0000
 # define GREEN 0xFF00
 # define YELLOW 0xFFFF00
+# define BLUE 0x0000FF
 
 typedef struct s_vars {
 	int	*mlx;
 	int	*win;
 }			t_vars;
 
-typedef struct t_cords{
-	double	y;
-	double 	x;
+typedef struct s_cords{
+	int		y;
+	int		x;
+	int		a;
+	int		n;
+	int		b;
 }	t_cords;
 
 int 	handle_no_event(void *data);

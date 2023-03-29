@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:26:34 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/03/10 11:18:40 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:04:09 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t			i;
@@ -50,4 +51,12 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	if (n == 0)
 		return (0);
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+void	pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->length + x * (data->bites / 8));
+	*(unsigned int *) dst = color;
 }

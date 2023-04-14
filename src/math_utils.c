@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:34:32 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/03/30 17:08:08 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/13 10:33:06 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@ double	ft_map(double start, double end, double r1, double r2)
 	return (((start * (r1 - r2)) / end) + r1);
 }
 
-int mandel_math(t_cords pos)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-    int ca;
-    int cb;
-    int n;
-    
-    ca = pos.d * pos.d - pos.c * pos.c + pos.a;
-    cb = 2 * pos.d * pos.c + pos.b;
-    pos.d = ca;
-    pos.c = cb;
-    if (fabs(pos.d + pos.c) > 16)
-    {
-        return (0);
-    }
-	return (1);
+	size_t			i;
+
+	i = 0;
+	while (s1[i] != '\0' && s2[i] == s1[i])
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+int	ft_tolower(int c)
+{
+	if (c >= 65 && c <= 90)
+		c += 32;
+	return (c);
 }

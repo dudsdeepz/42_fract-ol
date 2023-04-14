@@ -6,15 +6,15 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/03/30 17:05:11 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:55:09 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_OL_H
 # define FRACT_OL_H
 
-# define X 1980
-# define Y 1650
+# define X 1920
+# define Y 1080
 # define MLX_ERROR 1
 # include <stdlib.h>
 # include <X11/keysym.h>
@@ -57,9 +57,14 @@ int		ft_close(t_vars *vars);
 int		arguments(void);
 int		ft_atoi(const char *nptr);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	mandelbrot(t_vars vars, t_data img);
+int		mandelbrot(t_cords pos);
+void	julia(t_vars vars, t_data img);
 double	ft_map(double start, double end, double r1, double r2);
 void	pixel_put(t_data *data, int x, int y, int color);
-int		mandel_math(t_cords pos);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_tolower(int c);
+void 	render_mandelbrot(t_vars vars, t_data img);
+void 	render_julia(t_vars vars, t_data img);
+void    set_choose(char *set, t_vars vars, t_data img);
 
 #endif

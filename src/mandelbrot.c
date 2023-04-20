@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:36:55 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/13 15:21:45 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:45:09 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 
 int	mandelbrot(t_cords pos)
 {
-	float temp;
-	float ca;
-    float cb;
     int n;
+	double	dd;
+	double	aa;
 
-	ca = 0.8;
-	cb = 0.8;
 	n = 0;
-	while (n++ < 100)
+	while (n < 100)
 		{
-			temp = ca * ca - cb * cb + pos.x;
-			cb = 2 * ca * cb + pos.y;
-			ca = temp;
-			if (fabs((ca + cb)) > 4.0)
-				break ;
+			dd = pow(pos.x, 2) - pow(pos.y, 2);
+			aa = 2.0 * dd * pos.x * pos.y;
+			if (fabs(dd) > 25.0)
+				break;
+			pos.x = dd + pos.c;
+			pos.y = aa + pos.d;
+			n += 1;
 		}
 	return (n);
 }
@@ -36,7 +35,6 @@ int	mandelbrot(t_cords pos)
 void render_mandelbrot(t_vars vars, t_data img)
 {
 	t_cords pos;
-	int		iterations;
 	
 	pos.x = 0;
 	while (pos.x++ < X)
@@ -44,9 +42,14 @@ void render_mandelbrot(t_vars vars, t_data img)
 		pos.y = 0;
 		while (pos.y++ < Y)
 		{
-			iterations = mandelbrot(pos);
-			if (iterations == 100)
-				pixel_put(&img, X / 2, Y / 2, YELLOW);
+			pos.x = 3 / X * pos.x + 2;
+			pos.y = 2 / Y * pos.y - 1;
+			pos.c = pos.x;
+			pos.d = pos.y;
+			if (mandelbrot(pos) == 100)
+			{
+				pixel_put(&img, pos.x, pos.y, YELLOW);
+			}
 		}
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);

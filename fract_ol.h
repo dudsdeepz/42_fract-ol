@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/20 11:05:22 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:48:58 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define GREEN 0xFF0000
 # define YELLOW 0xFFFF00
 # define BLUE 0x0000FF
-
+# define BLACK 0x000000
 typedef struct s_vars {
 	int	*mlx;
 	int	*win;
@@ -66,5 +66,6 @@ int		ft_tolower(int c);
 void 	render_mandelbrot(t_vars vars, t_data img);
 void 	render_julia(t_vars vars, t_data img);
 void    set_choose(char *set, t_vars vars, t_data img);
+int 	get_color(int max_iterations);
 
 #endif

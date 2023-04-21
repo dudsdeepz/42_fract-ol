@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:36:55 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/20 11:45:09 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:29:18 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	mandelbrot(t_cords pos)
 	n = 0;
 	while (n < 100)
 		{
-			dd = pow(pos.x, 2) - pow(pos.y, 2);
-			aa = 2.0 * dd * pos.x * pos.y;
-			if (fabs(dd) > 25.0)
+			dd = pow(pos.c, 2) - pow(pos.d, 2);
+			aa = 2.0 * pos.c * pos.d;
+			if (fabs(dd) > 15.0)
 				break;
-			pos.x = dd + pos.c;
-			pos.y = aa + pos.d;
-			n += 1;
+			pos.c = dd + pos.a;
+			pos.d = aa + pos.b;
+			n++;
 		}
 	return (n);
 }
@@ -35,21 +35,22 @@ int	mandelbrot(t_cords pos)
 void render_mandelbrot(t_vars vars, t_data img)
 {
 	t_cords pos;
-	
+	int	iterations;
+	int color;
+
 	pos.x = 0;
 	while (pos.x++ < X)
 	{
 		pos.y = 0;
 		while (pos.y++ < Y)
 		{
-			pos.x = 3 / X * pos.x + 2;
-			pos.y = 2 / Y * pos.y - 1;
-			pos.c = pos.x;
-			pos.d = pos.y;
-			if (mandelbrot(pos) == 100)
-			{
+			pos.c = ft_map(pos.x, X - 1, -2.0, 2.0);
+			pos.d = ft_map(pos.y, Y - 1, -2.0, 2.0);
+			pos.a = pos.c;
+			pos.b = pos.d;
+			iterations = mandelbrot(pos);
+			if (iterations == 100)
 				pixel_put(&img, pos.x, pos.y, YELLOW);
-			}
 		}
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);

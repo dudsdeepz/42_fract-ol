@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:36:55 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/21 17:48:31 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:01:27 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ int	mandelbrot(t_cords pos)
 	double	aa;
 
 	n = 0;
-	while (n <= 100)
+	while (n < 100)
 		{
-			dd = pow(pos.c, 2) - pow(pos.d, 2);
-			aa = 2.0 * pos.c * pos.d;
-			printf("dd : %d\n", dd);
-			if (abs(dd / 3) > 100)
+			dd = pow(pos.a, 2) - pow(pos.b, 2);
+			aa = 2.0 * pos.a * pos.b;
+			if (fabs(dd) > 15.0)
 				break ;
-			pos.c = dd + pos.a;
-			pos.d = aa + pos.b;
-			printf("n: %i\n", n);
-			printf("aa: %d\n", aa);
+			pos.a = dd + pos.c;
+			pos.b = aa + pos.d;
 			n++;
 		}
 	return (n);
@@ -41,21 +38,24 @@ void render_mandelbrot(t_vars vars, t_data img)
 	int	iterations;
 	int color;
 
-	pos.x = 0;
-	while (pos.x++ < X - 1)
+	pos.x = -1;
+	pos.y = 0;
+	while (++pos.x < X)
 	{
 		pos.y = 0;
-		while (pos.y++ < Y - 1)
+		pos.c = ft_map(pos.x, X - 1, -2.5, 2.5);
+		// pos.c = pos.x;
+		while (pos.y++ < Y)
 		{
-			pos.c = ft_map(pos.x, X - 1, -2, 1.1);
-			pos.d = ft_map(pos.y, Y - 1, -2, 1.1);
+			// pos.d = pos.y;
+			pos.d = ft_map(pos.y, Y - 1, -2.5, 2.5);
 			pos.a = pos.c;
 			pos.b = pos.d;
 			iterations = mandelbrot(pos);
-			color = get_color(iterations, 100);
+			color = get_color(iterations, 25);
 			if (iterations == 100)
 				color = BLACK;
-			pixel_put(&img, pos.x, pos.y, color);
+			pixel_put(&img, pos.x , pos.y, color);
 		}
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);

@@ -6,15 +6,15 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/21 17:48:58 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:00:44 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_OL_H
 # define FRACT_OL_H
 
-# define X 1920
-# define Y 1080
+# define X 1440
+# define Y 1440
 # define MLX_ERROR 1
 # include <stdlib.h>
 # include <X11/keysym.h>
@@ -66,6 +66,6 @@ int		ft_tolower(int c);
 void 	render_mandelbrot(t_vars vars, t_data img);
 void 	render_julia(t_vars vars, t_data img);
 void    set_choose(char *set, t_vars vars, t_data img);
-int 	get_color(int max_iterations);
+int 	get_color(int iter, int max_iterations);
 
 #endif

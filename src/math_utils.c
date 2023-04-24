@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:34:32 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/13 10:33:06 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:55:47 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	ft_map(double start, double end, double r1, double r2)
 {
-	return (((start * (r1 - r2)) / end) + r1);
+	return (((start * (r2 - r1)) / end) + r1);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

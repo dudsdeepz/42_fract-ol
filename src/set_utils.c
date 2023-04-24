@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:57:40 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/21 17:49:37 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:52:23 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ void    set_choose(char *set, t_vars vars, t_data img)
 	mlx_loop(vars.mlx);
 }
 
-int get_color(int max_iterations)
+int get_color(int iter, int max_iterations)
 {
     int red;
     int green;
     int blue;
 
-    red = (i * 255) / max_iterations;
+    red = (iter * 255) / max_iterations;
+    green = (255 - (iter * 255) / max_iterations);
+    blue = (255 * iter * (max_iterations - iter)) / (max_iterations * max_iterations);
+    return ((red << 16) | (green << 8) | blue);
 }

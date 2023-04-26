@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:36:55 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 11:10:09 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:22:13 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,27 @@ int	mandelbrot(t_cords pos)
 	return (n);
 }
 
-void render_mandelbrot(t_vars vars, t_data img, t_cords pos)
+int render_mandelbrot(t_all_in_one *all)
 {
-	int	iterations;
+	int iterations;
 	int color;
 
-	pos.x = -1;
-	pos.y = 0;
-	while (++pos.x < X)
+	all->pos.x = -1;
+	while (++all->pos.x < X)
 	{
-		pos.y = -1;
-		pos.c = ft_map(pos.x, X - 1, -pos.zoom, pos.zoom);
-		while (++pos.y < Y)
+		all->pos.y = -1;
+		all->pos.c = ft_map(all->pos.x, X - 1, -all->pos.zoom, all->pos.zoom);
+		while (++all->pos.y < Y)
 		{
-			pos.d = ft_map(pos.y, Y - 1, -pos.zoom, pos.zoom);
-			pos.a = pos.c;
-			pos.b = pos.d;
-			iterations = mandelbrot(pos);
-			color = get_color(iterations, pos);
-			if (iterations == pos.max_iter)
+			all->pos.d = ft_map(all->pos.y, Y - 1, -all->pos.zoom, all->pos.zoom);
+			all->pos.a = all->pos.c;
+			all->pos.b = all->pos.d;
+			iterations = mandelbrot(all->pos);
+			color = get_color(iterations, all);
+			if (iterations == all->pos.max_iter)
 				color = BLACK;
-			pixel_put(&img, pos.x , pos.y, color);
+			pixel_put(&all->img, all->pos.x , all->pos.y, color);
 		}
 	}
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
+		mlx_put_image_to_window(all->vars.mlx, all->vars.win, all->img.img, 0, 0);
 }

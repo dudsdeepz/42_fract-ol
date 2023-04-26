@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:19:18 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 11:02:58 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:55:31 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	int		max_iter;
 	t_cords	pos;
 	
+	controls_gui();
 	pos.max_iter = 25;
 	if (ac < 2)
 		exit(arguments());

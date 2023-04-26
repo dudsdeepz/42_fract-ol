@@ -6,7 +6,7 @@
 #    By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 14:56:37 by eduarodr          #+#    #+#              #
-#    Updated: 2022/11/17 15:50:04 by eduarodr         ###   ########.fr        #
+#    Updated: 2023/04/24 17:37:17 by eduarodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ = $(SRC:.c=.o)
 
 NAME = libftprintf.a
 
-CC = cc
+CC = @gcc
 
 RM = rm -f
 

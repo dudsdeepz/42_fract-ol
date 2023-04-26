@@ -6,7 +6,7 @@
 #    By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 15:57:13 by eduarodr          #+#    #+#              #
-#    Updated: 2023/04/13 09:57:35 by eduarodr         ###   ########.fr        #
+#    Updated: 2023/04/26 11:52:10 by eduarodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,11 @@ SRC = fract_ol.c\
 OBJ = ${SRC:.c=.o}
 
 
-CC = cc
+CC = @gcc
 
-RM = rm -f
+RM = @rm -f
 
-CCFLAGS = -Werror -Wextra -Werror -g -fsanitize=address
+CCFLAGS = -Werror -Wextra -Werror -O3 #-g -fsanitize=address
 
 PRINTF_PATH = ./printf
 PRINTF_NAME = libftprintf.a
@@ -38,12 +38,12 @@ MLX_PATH = ./mlx
 MLX = ./mlx/libmlx.a
 
 $(PRINTF_NAME):
-		@make -C $(PRINTF_PATH)
+		@make -sC $(PRINTF_PATH)
 
 all: ${MLX_NAME} ${NAME}
 
 ${MLX_NAME}:
-	@make -C ${MLX_PATH}
+	@make -sC ${MLX_PATH}
 
 $(NAME):	$(OBJ)
 	$(CC) $(CCFLAGS) $(OBJ) -Lmlx -lmlx -Imlx -lXext -lX11 -lm -lz -o ${NAME} ${MLX} -L ./printf -lftprintf

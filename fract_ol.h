@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 14:59:02 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:11:30 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ void 	set_render(t_all_in_one *all, char *set);
 void 	handle_close(t_vars vars);
 int 	julia_keys(int keysym, t_all_in_one *all);
 int 	change_color(int keycode, t_all_in_one *all);
-void 	controls_all(t_all_in_one *all);
 int		change_iter(int keycode, t_all_in_one *all);
-void 	controls_gui(void);
+int 	controls_gui(int keyword, t_all_in_one *all);
 
 #endif

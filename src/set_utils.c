@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:57:40 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 14:35:26 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:14:42 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,15 @@ void set_render(t_all_in_one *all, char *set)
     all->pos.green = 10;
     all->pos.blue = 5;
     if (!ft_strcmp(set, "mandelbrot"))
-    {
         mlx_loop_hook(all->vars.mlx, render_mandelbrot, all);
-        mlx_mouse_hook(all->vars.win, &zoom_fractal, &all->vars);
-    }
     else if (!ft_strcmp(set, "julia"))
     {
         all->pos.a = 0.001;
 	    all->pos.b = 0.001;
         mlx_loop_hook(all->vars.mlx, render_julia, all);
     }
-    controls_all(all);
-    handle_close(all->vars);
-}
-
-void controls_all(t_all_in_one *all)
-{
+	mlx_mouse_hook(all->vars.win, &zoom_fractal, all);
+    printf("%f\n", all->pos.zoom);
     mlx_hook(all->vars.win, 2, 1L << 0, julia_keys, all);
+    handle_close(all->vars);
 }

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   fract_ol.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eduardo <eduardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 18:11:30 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/27 00:47:50 by eduardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_OL_H
 # define FRACT_OL_H
 
-# define X 1280
-# define Y 1280
+# define X 800
+# define Y 800
 # define MLX_ERROR 1
 # include <stdlib.h>
 # include <X11/keysym.h>
@@ -41,6 +41,8 @@ typedef struct s_cords{
 	double			b;
 	double			c;
 	double			d;
+	double			xx;
+	double			yy;
 	double			zoom;
 	double			max_iter;
 	int				red;

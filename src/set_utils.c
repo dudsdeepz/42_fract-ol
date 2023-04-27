@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eduardo <eduardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:57:40 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 18:14:42 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/27 01:08:08 by eduardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void set_render(t_all_in_one *all, char *set)
         mlx_loop_hook(all->vars.mlx, render_julia, all);
     }
 	mlx_mouse_hook(all->vars.win, &zoom_fractal, all);
-    printf("%f\n", all->pos.zoom);
     mlx_hook(all->vars.win, 2, 1L << 0, julia_keys, all);
     handle_close(all->vars);
 }

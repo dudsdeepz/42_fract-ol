@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eduardo <eduardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:36:55 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 13:22:13 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/27 00:49:39 by eduardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int render_mandelbrot(t_all_in_one *all)
 			color = get_color(iterations, all);
 			if (iterations == all->pos.max_iter)
 				color = BLACK;
-			pixel_put(&all->img, all->pos.x , all->pos.y, color);
+			pixel_put(&all->img, all->pos.x + all->pos.xx, all->pos.y + all->pos.yy, color);
 		}
 	}
 		mlx_put_image_to_window(all->vars.mlx, all->vars.win, all->img.img, 0, 0);

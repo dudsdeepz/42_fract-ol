@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eduardo <eduardo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:26:38 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 18:19:23 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/27 01:10:35 by eduardo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 int zoom_fractal(int button, int x, int y, t_all_in_one *all)
 {
     if (button == 4)
-		all->pos.zoom += 0.1;
+	{
+		all->pos.zoom /= 1.1;
+		all->pos.xx += ft_map(x, X, -all->pos.zoom, all->pos.zoom);
+		all->pos.yy += ft_map(x, X, -all->pos.zoom, all->pos.zoom);
+	}
     else if (button == 5)
-        all->pos.zoom -= 0.1;
-	pos.c = ft_map()
-	pos.d = ft_map()
+	{
+        all->pos.zoom *= 1.1;
+		all->pos.xx -= ft_map(x, X, -all->pos.zoom, all->pos.zoom);
+		all->pos.yy -= ft_map(x, X, -all->pos.zoom, all->pos.zoom);
+	}
 	return (0);
 }
 

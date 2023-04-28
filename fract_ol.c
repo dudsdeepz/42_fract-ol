@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:19:18 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/27 17:31:46 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:00:03 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,21 @@ int	main(int ac, char **av)
 	t_vars	vars;
 	t_data	img;
 	t_cords	pos;
-	
+	int	i;
+
+	i = 0;
 	pos.max_iter = 25;
 	if (ac < 2)
 		exit(arguments());
-	if (av[2])
-		pos.max_iter = ft_atoi(av[2]);
 	vars.mlx = mlx_init();
 	if (!vars.mlx)
 		return (MLX_ERROR);
-	vars.set = av[1];	
+	if (av[2])
+		if (ft_isdigit(*av[2]))
+			pos.max_iter = ft_atoi(av[2]);
+	else
+		exit(arguments());
+	vars.set = av[1];
 	init_fractal(vars.set, img, pos, vars);
 	if (!vars.win)
 	{

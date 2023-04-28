@@ -6,7 +6,7 @@
 #    By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 15:57:13 by eduarodr          #+#    #+#              #
-#    Updated: 2023/04/28 10:56:59 by eduarodr         ###   ########.fr        #
+#    Updated: 2023/04/28 19:44:27 by eduarodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ CC = @gcc
 
 RM = @rm -f
 
-CCFLAGS = -Werror -Wextra -Werror -O2 -ffast-math -Os -Ofast -g -fsanitize=address
+CCFLAGS = -Werror -Wextra -Werror -O3 -g -fsanitize=address
 
 PRINTF_PATH = ./printf
 PRINTF_NAME = libftprintf.a

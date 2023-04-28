@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 10:26:34 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/27 13:41:25 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/28 19:59:41 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,11 @@ void	pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->length + x * (data->bites / 8));
 	*(unsigned int *) dst = color;
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }

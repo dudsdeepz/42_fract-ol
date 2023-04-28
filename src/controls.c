@@ -6,14 +6,13 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:26:38 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/28 18:18:06 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:01:25 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fract_ol.h"
 
-
-int zoom_fractal(int button, int x, int y, t_all_in_one *all)
+int	zoom_fractal(int button, int x, int y, t_all_in_one *all)
 {
 	if (button == 4)
 	{
@@ -26,34 +25,34 @@ int zoom_fractal(int button, int x, int y, t_all_in_one *all)
 	}
 	else if (button == 5)
 	{
-		all->pos.zoom *= 1.0;
+		all->pos.zoom *= 1.1;
 	}
 	else if (button == 1)
-		{
+	{
 			all->pos.xx += ((x - X / 2) * 0.1);
 			all->pos.yy += ((y - Y / 2) * 0.1);
-		}
+	}
 	return (0);
 }
 
-int change_color(int keycode, t_all_in_one *all)
+int	change_color(int keycode, t_all_in_one *all)
 {
-    if(keycode == XK_1)
-        all->pos.red += 1;
-    else if(keycode == XK_4)
-        all->pos.red -= 1;
-    else if(keycode == XK_2)
-        all->pos.green += 1;
-    else if(keycode == XK_5)
-        all->pos.green -= 1;
-    else if(keycode == XK_3)
-        all->pos.blue += 1;
-    else if(keycode == XK_6)
-        all->pos.blue -= 1;
-    return (0);
+	if (keycode == XK_1)
+		all->pos.red += 1;
+	else if (keycode == XK_4)
+		all->pos.red -= 1;
+	else if (keycode == XK_2)
+		all->pos.green += 1;
+	else if (keycode == XK_5)
+		all->pos.green -= 1;
+	else if (keycode == XK_3)
+		all->pos.blue += 1;
+	else if (keycode == XK_6)
+		all->pos.blue -= 1;
+	return (0);
 }
 
-int julia_keys(int keycode, t_all_in_one *all)
+int	julia_keys(int keycode, t_all_in_one *all)
 {
 	if (keycode == XK_Up)
 		all->pos.a += 0.005;
@@ -68,7 +67,7 @@ int julia_keys(int keycode, t_all_in_one *all)
 	return (0);
 }
 
-int change_iter(int keycode, t_all_in_one *all)
+int	change_iter(int keycode, t_all_in_one *all)
 {
 	if (keycode == XK_9)
 		all->pos.max_iter += 1;
@@ -78,18 +77,3 @@ int change_iter(int keycode, t_all_in_one *all)
 		change_color(keycode, all);
 	return (0);
 }
-
-	/*ft_printf("===================================\n");
-	ft_printf("Number 1: add red to the fractal\n");
-	ft_printf("Number 2: add green to the fractal\n");
-	ft_printf("NUmber 3: add blue to the fractal\n");
-	ft_printf("Number 4: remove red to the fractal\n");
-	ft_printf("Number 5: remove green to the fractal\n");
-	ft_printf("Nmber 6: remove blue to the fractal\n");
-	ft_printf("Number 8: decrease number of max iterations\n");
-	ft_printf("Number 9: increase number of max iterations\n");
-	ft_printf("{Julia Set}Left arrou: decrease value b\n");
-	ft_printf("{Julia Set}Right arrou: increase value b\n");
-	ft_printf("{Julia Set}Up arrou: decrease value b\n");
-	ft_printf("{Julia Set}Down arrou: increasevalue b\n");
-	ft_printf("===================================\n");*/

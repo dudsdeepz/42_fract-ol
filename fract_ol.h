@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/28 20:00:41 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:18:27 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void	default_values(t_all_in_one *all);
 void	handle_close(t_all_in_one *all);
 void	init_fractal(char *set, t_data img, t_cords pos, t_vars vars);
 int		ft_isdigit(int c);
+int		arrow_move(int keyword, t_all_in_one *all);
 
 #endif

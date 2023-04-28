@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/28 10:14:21 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:59:20 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ int		change_iter(int keycode, t_all_in_one *all);
 void 	default_values(t_all_in_one *all);
 void	handle_close(t_all_in_one *all);
 void 	init_fractal(char *set, t_data img, t_cords pos, t_vars vars);
+
 
 #endif

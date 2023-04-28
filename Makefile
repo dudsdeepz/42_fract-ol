@@ -6,7 +6,7 @@
 #    By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/06 15:57:13 by eduarodr          #+#    #+#              #
-#    Updated: 2023/04/27 14:15:15 by eduarodr         ###   ########.fr        #
+#    Updated: 2023/04/28 10:56:59 by eduarodr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC = fract_ol.c\
 		src/utils.c\
 		src/mandelbrot.c\
 		src/julia.c\
-		src/math_utils.c\
+		src/utils2.c\
 		src/set_utils.c\
 
 OBJ = ${SRC:.c=.o}

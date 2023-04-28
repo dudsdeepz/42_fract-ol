@@ -6,13 +6,13 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:57:40 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/28 10:12:27 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:04:29 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fract_ol.h"
 
-void    set_choose(t_all_in_one *all, t_data img, t_cords pos, t_vars vars)
+void set_choose(t_all_in_one *all, t_data img, t_cords pos, t_vars vars)
 {
     int i;
     
@@ -39,18 +39,15 @@ void    set_choose(t_all_in_one *all, t_data img, t_cords pos, t_vars vars)
 int set_render(t_all_in_one *all)
 {
     int color;
-    
-    controls_gui(all); 
+
     all->pos.x = -1;
     while (++all->pos.x < X)
         {
             all->pos.y = -1;
-            all->pos.c = ft_map(all->pos.x, X - 1, all->pos.zoom - all->pos.zoom * 2,all->pos.zoom);
-	        all->pos.c -= all->pos.xx;
             while (++all->pos.y < Y)
             {
-                all->pos.d = ft_map(all->pos.y, Y - 1, all->pos.zoom - all->pos.zoom * 2, all->pos.zoom);
-	            all->pos.d -= all->pos.yy;
+                all->pos.c = ft_map(all->pos.x + all->pos.xx, X - 1, -all->pos.zoom, all->pos.zoom);
+                all->pos.d = ft_map(all->pos.y + all->pos.yy, Y - 1, -all->pos.zoom, all->pos.zoom);
                 if (!ft_strcmp(all->vars.set, "mandelbrot"))
                     color = render_mandelbrot(all);
                 else if (!ft_strcmp(all->vars.set, "julia"))

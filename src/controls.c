@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 13:26:38 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/28 10:10:39 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:18:06 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,22 @@ int zoom_fractal(int button, int x, int y, t_all_in_one *all)
 {
 	if (button == 4)
 	{
-		all->pos.zoom -= 0.1;
-		all->pos.xx -= ft_map(x, X, -all->pos.zoom, all->pos.zoom);
-		all->pos.yy -= ft_map(y, X, -all->pos.zoom, all->pos.zoom);
+		all->pos.zoom /= 1.1;
+		all->pos.xx *= 1.1;
+		all->pos.yy *= 1.1;
+		all->pos.xx += ((x - X / 2) * 0.1);
+		all->pos.yy += ((y - Y / 2) * 0.1);
+		all->pos.max_iter++;
 	}
 	else if (button == 5)
 	{
-		all->pos.zoom += 0.1;
-		all->pos.xx += ft_map(x, X, -all->pos.zoom, all->pos.zoom);
-		all->pos.yy += ft_map(y, X, -all->pos.zoom, all->pos.zoom);
+		all->pos.zoom *= 1.0;
 	}
+	else if (button == 1)
+		{
+			all->pos.xx += ((x - X / 2) * 0.1);
+			all->pos.yy += ((y - Y / 2) * 0.1);
+		}
 	return (0);
 }
 
@@ -73,17 +79,17 @@ int change_iter(int keycode, t_all_in_one *all)
 	return (0);
 }
 
-	// ft_printf("===================================\n");
-	// ft_printf("Number 1: add red to the fractal\n");
-	// ft_printf("Number 2: add green to the fractal\n");
-	// ft_printf("NUmber 3: add blue to the fractal\n");
-	// ft_printf("Number 4: remove red to the fractal\n");
-	// ft_printf("Number 5: remove green to the fractal\n");
-	// ft_printf("Nmber 6: remove blue to the fractal\n");
-	// ft_printf("Number 8: decrease number of max iterations\n");
-	// ft_printf("Number 9: increase number of max iterations\n");
-	// ft_printf("{Julia Set}Left arrou: decrease value b\n");
-	// ft_printf("{Julia Set}Right arrou: increase value b\n");
-	// ft_printf("{Julia Set}Up arrou: decrease value b\n");
-	// ft_printf("{Julia Set}Down arrou: increasevalue b\n");
-	// ft_printf("===================================\n");
+	/*ft_printf("===================================\n");
+	ft_printf("Number 1: add red to the fractal\n");
+	ft_printf("Number 2: add green to the fractal\n");
+	ft_printf("NUmber 3: add blue to the fractal\n");
+	ft_printf("Number 4: remove red to the fractal\n");
+	ft_printf("Number 5: remove green to the fractal\n");
+	ft_printf("Nmber 6: remove blue to the fractal\n");
+	ft_printf("Number 8: decrease number of max iterations\n");
+	ft_printf("Number 9: increase number of max iterations\n");
+	ft_printf("{Julia Set}Left arrou: decrease value b\n");
+	ft_printf("{Julia Set}Right arrou: increase value b\n");
+	ft_printf("{Julia Set}Up arrou: decrease value b\n");
+	ft_printf("{Julia Set}Down arrou: increasevalue b\n");
+	ft_printf("===================================\n");*/

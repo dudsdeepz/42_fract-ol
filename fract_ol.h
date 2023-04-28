@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   fract_ol.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eduardo <eduardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:21:22 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/27 00:47:50 by eduardo          ###   ########.fr       */
+/*   Updated: 2023/04/28 10:14:21 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACT_OL_H
 # define FRACT_OL_H
 
-# define X 800
-# define Y 800
+# define X 1280
+# define Y 1280
 # define MLX_ERROR 1
 # include <stdlib.h>
 # include <X11/keysym.h>
@@ -29,8 +29,9 @@
 # define BLUE 0x0000FF
 # define BLACK 0x000000
 typedef struct s_vars {
-	int	*mlx;
-	int	*win;
+	int	 *mlx;
+	int	 *win;
+	char *set;
 }			t_vars;
 
 
@@ -77,14 +78,15 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_tolower(int c);
 int 	render_mandelbrot(t_all_in_one *all);
 int 	render_julia(t_all_in_one *all);
-void    set_choose(char *set, t_vars vars, t_data img, t_cords pos);
+void    set_choose(t_all_in_one *all, t_data img, t_cords pos, t_vars vars);
 int 	get_color(int iter, t_all_in_one *all);
 int 	zoom_fractal(int button, int x, int y, t_all_in_one *all);
-void 	set_render(t_all_in_one *all, char *set);
-void 	handle_close(t_vars vars);
+int 	set_render(t_all_in_one *all);
 int 	julia_keys(int keysym, t_all_in_one *all);
 int 	change_color(int keycode, t_all_in_one *all);
 int		change_iter(int keycode, t_all_in_one *all);
-int 	controls_gui(int keyword, t_all_in_one *all);
+void 	default_values(t_all_in_one *all);
+void	handle_close(t_all_in_one *all);
+void 	init_fractal(char *set, t_data img, t_cords pos, t_vars vars);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eduardo <eduardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 10:36:55 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/27 00:49:39 by eduardo          ###   ########.fr       */
+/*   Updated: 2023/04/27 17:38:04 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,11 @@ int render_mandelbrot(t_all_in_one *all)
 	int iterations;
 	int color;
 
-	all->pos.x = -1;
-	while (++all->pos.x < X)
-	{
-		all->pos.y = -1;
-		all->pos.c = ft_map(all->pos.x, X - 1, -all->pos.zoom, all->pos.zoom);
-		while (++all->pos.y < Y)
-		{
-			all->pos.d = ft_map(all->pos.y, Y - 1, -all->pos.zoom, all->pos.zoom);
-			all->pos.a = all->pos.c;
-			all->pos.b = all->pos.d;
-			iterations = mandelbrot(all->pos);
-			color = get_color(iterations, all);
-			if (iterations == all->pos.max_iter)
-				color = BLACK;
-			pixel_put(&all->img, all->pos.x + all->pos.xx, all->pos.y + all->pos.yy, color);
-		}
-	}
-		mlx_put_image_to_window(all->vars.mlx, all->vars.win, all->img.img, 0, 0);
+	all->pos.a = all->pos.c;
+	all->pos.b = all->pos.d;
+	iterations = mandelbrot(all->pos);
+	color = get_color(iterations, all);
+	if (iterations == all->pos.max_iter)
+		color = BLACK;
+	return (color);
 }

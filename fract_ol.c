@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:19:18 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 17:12:52 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:31:46 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int ac, char **av)
 {
 	t_vars	vars;
 	t_data	img;
-	int		max_iter;
 	t_cords	pos;
 	
 	pos.max_iter = 25;
@@ -27,7 +26,8 @@ int	main(int ac, char **av)
 	vars.mlx = mlx_init();
 	if (!vars.mlx)
 		return (MLX_ERROR);
-	set_choose(av[1], vars, img, pos);
+	vars.set = av[1];	
+	init_fractal(vars.set, img, pos, vars);
 	if (!vars.win)
 	{
 		free (vars.win);

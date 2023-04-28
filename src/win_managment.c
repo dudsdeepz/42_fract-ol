@@ -6,7 +6,7 @@
 /*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:54:42 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/26 18:10:25 by eduarodr         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:14:16 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	arguments(void)
 	return (0);
 }
 
-void handle_close(t_vars vars)
+void handle_close(t_all_in_one *all)
 {
-	mlx_hook(vars.win, 17, 1L << 2, ft_close, &vars);
-	mlx_key_hook(vars.win, &escape_close, &vars);
-	mlx_loop(vars.mlx);
+	mlx_hook(all->vars.win, 17, 1L << 2, ft_close, &all->vars);
+	mlx_key_hook(all->vars.win, &escape_close, &all->vars);
+	mlx_loop(all->vars.mlx);
 }

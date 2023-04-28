@@ -3,32 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   set_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eduardo <eduardo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eduarodr <eduarodr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:57:40 by eduarodr          #+#    #+#             */
-/*   Updated: 2023/04/27 01:08:08 by eduardo          ###   ########.fr       */
+/*   Updated: 2023/04/28 10:12:27 by eduarodr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fract_ol.h"
 
-void    set_choose(char *set, t_vars vars, t_data img, t_cords pos)
+void    set_choose(t_all_in_one *all, t_data img, t_cords pos, t_vars vars)
 {
     int i;
-    t_all_in_one all;
-
-    all.img = img;
-    all.pos = pos;
-    all.vars = vars;
+    
     i = -1;
-    while (set[++i])
-        set[i] = ft_tolower(set[i]);
-    if (!ft_strcmp(set, "mandelbrot"))
-        set_render(&all, set);
-    else if (!ft_strcmp(set, "julia"))
-        set_render(&all, set);
-    else
-        exit(arguments());
+    all->img = img;
+    all->pos = pos;
+    all->vars = vars;
+    all->vars.win = mlx_new_window(all->vars.mlx, X, Y, all->vars.set); 
+    all->img.img = mlx_new_image(all->vars.mlx, X, Y);
+	all->img.addr = mlx_get_data_addr(all->img.img, &all->img.bites,
+        &all->img.length, &all->img.end);
+    default_values(all);
+    while (all->vars.set[i++])
+        all->vars.set[i++] = ft_tolower(all->vars.set[i++]);
+    if (!ft_strcmp(all->vars.set, "mandelbrot"))
+        mlx_loop_hook(all->vars.mlx, set_render, all);
+    else if (!ft_strcmp(all->vars.set, "julia"));
+        mlx_loop_hook(all->vars.mlx, set_render, all);
+    mlx_hook(all->vars.win, 2, 1L << 0, julia_keys, all);
+	mlx_mouse_hook(all->vars.win, &zoom_fractal, all);
+    handle_close(all);
+}
+
+int set_render(t_all_in_one *all)
+{
+    int color;
+    
+    controls_gui(all); 
+    all->pos.x = -1;
+    while (++all->pos.x < X)
+        {
+            all->pos.y = -1;
+            all->pos.c = ft_map(all->pos.x, X - 1, all->pos.zoom - all->pos.zoom * 2,all->pos.zoom);
+	        all->pos.c -= all->pos.xx;
+            while (++all->pos.y < Y)
+            {
+                all->pos.d = ft_map(all->pos.y, Y - 1, all->pos.zoom - all->pos.zoom * 2, all->pos.zoom);
+	            all->pos.d -= all->pos.yy;
+                if (!ft_strcmp(all->vars.set, "mandelbrot"))
+                    color = render_mandelbrot(all);
+                else if (!ft_strcmp(all->vars.set, "julia"))
+                    color = render_julia(all);
+                pixel_put(&all->img, all->pos.x, all->pos.y, color);
+            }
+        }
+    mlx_put_image_to_window(all->vars.mlx, all->vars.win, all->img.img, 0, 0);
 }
 
 int get_color(int iter, t_all_in_one *all)
@@ -44,25 +74,28 @@ int get_color(int iter, t_all_in_one *all)
     return ((red << all->pos.red) | (green << all->pos.green) | (blue << all->pos.blue));
 }
 
-void set_render(t_all_in_one *all, char *set)
+
+void default_values(t_all_in_one *all)
 {
-    all->img.img = mlx_new_image(all->vars.mlx, X, Y);
-	all->img.addr = mlx_get_data_addr(all->img.img, &all->img.bites,
-        &all->img.length, &all->img.end);
-    all->vars.win = mlx_new_window(all->vars.mlx, X, Y, set);
-    all->pos.zoom = 4.0;
+    all->pos.zoom = 3.5;
     all->pos.red = 16;
     all->pos.green = 10;
     all->pos.blue = 5;
-    if (!ft_strcmp(set, "mandelbrot"))
-        mlx_loop_hook(all->vars.mlx, render_mandelbrot, all);
-    else if (!ft_strcmp(set, "julia"))
-    {
-        all->pos.a = 0.001;
-	    all->pos.b = 0.001;
-        mlx_loop_hook(all->vars.mlx, render_julia, all);
-    }
-	mlx_mouse_hook(all->vars.win, &zoom_fractal, all);
-    mlx_hook(all->vars.win, 2, 1L << 0, julia_keys, all);
-    handle_close(all->vars);
+}
+
+void init_fractal(char *set, t_data img, t_cords pos, t_vars vars)
+{
+    int i;
+    t_all_in_one all;
+
+    i = -1;
+    vars.set = set;
+    while (vars.set[++i])
+        vars.set[i] = ft_tolower(vars.set[i]);
+	if (!ft_strcmp(vars.set, "mandelbrot"))
+		set_choose(&all, img, pos, vars);
+    else if (!ft_strcmp(vars.set, "julia"))
+		set_choose(&all, img, pos, vars);
+	else
+		exit(arguments());
 }
